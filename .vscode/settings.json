@@ -5,4 +5,5 @@
         "*.tcc": "cpp",
         "streambuf": "cpp"
     },
+    "editor.formatOnSave": false
 }
