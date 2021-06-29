@@ -1,26 +1,27 @@
 
+
 #include "getting_started/shaders.h"
 #include "getting_started/textures.h"
 
-enum EnumFunction
-{
-    GETTING_STARTED_SHADERS,
-    GETTING_STARTED_TEXTURES,
-};
-
 int main()
 {
-    EnumFunction func = EnumFunction::GETTING_STARTED_TEXTURES;
-    switch (func)
-    {
-    case EnumFunction::GETTING_STARTED_SHADERS:
-        getting_started_shaders();
-        break;
-    case EnumFunction::GETTING_STARTED_TEXTURES:
-        getting_started_textures();
-        break;
-    default:
-        break;
-    }
+
+#ifdef GETTING_STARTED_SHADERS
+    getting_started_shaders();
+#endif
+#ifdef GETTING_STARTED_TEXTURES
+    getting_started_textures();
+#endif
+    // EnumFunction func = EnumFunction::E_GETTING_STARTED_TEXTURES;
+
+    // switch (func)
+    // {
+    // case EnumFunction::E_GETTING_STARTED_SHADERS:
+    //     break;
+    // case EnumFunction::E_GETTING_STARTED_TEXTURES:
+    //     break;
+    // default:
+    //     break;
+    // }
     return 0;
 }

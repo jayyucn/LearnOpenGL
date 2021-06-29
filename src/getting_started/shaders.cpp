@@ -1,18 +1,13 @@
+
 #include "getting_started/shaders.h"
+#ifdef GETTING_STARTED_SHADERS
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "getting_started/shader.h"
+#include "shader.h"
 
 #include <iostream>
-
-void init();
-
-void getting_started_shaders()
-{
-    init();
-}
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -21,7 +16,7 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-void init()
+void getting_started_shaders()
 {
     // glfw: initialize and configure
     // ------------------------------
@@ -138,3 +133,4 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
+#endif

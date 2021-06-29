@@ -14,7 +14,7 @@ vertex storage
 
 * 什么是顶点(Vertex)
   A Vertex is a collection of  data per 3D coordinate.
-  btw, the vertex's data is represented using vertex attributes that can contain any data we'd like(3D position, some color value etc.).
+  btw, the vertex's data is represented using vertex attributes that can contain any data we'd like(3D position, some color value and texture coordinates etc.).
 
 * 什么是顶点数据(Vertex Data)
 
@@ -44,7 +44,10 @@ GL_CLAMP_TO_BORDER //Coordinates outside the range are now given a user-specifie
 ```
 #### 纹理过滤 texture filtering
 There are several options available, but what the most important are `GL_NEAREST` and `GL_LINEAR`.
+> 延伸：线性插值和双/三线性插值 https://zhuanlan.zhihu.com/p/77496615
 #### 多级渐远纹理 Mipmaps
 
 > The origin of the term mipmap is an initialism of the Latin phrase ***multum in parvo***("much in a small space"), and map modeled on bitmap.--orgin from wikipedia
 
+#纹理单元 Texture Unit
+we can actually assign a location value to the texture sampler so we can set multiple textures at once in a fragment shader. This location of a texture is more commonly known as a texture unit.
