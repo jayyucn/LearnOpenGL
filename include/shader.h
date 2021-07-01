@@ -62,6 +62,9 @@ public:
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
+        glBindAttribLocation(ID, 0, "aPos");
+        glBindAttribLocation(ID, 0, "aColor");
+        glBindAttribLocation(ID, 0, "aTexCoord");
         glLinkProgram(ID);
         checkCompileErrors(ID, "PROGRAM");
         // delete the shaders as they're linked into our program now and no longer necessary

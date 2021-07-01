@@ -3,7 +3,8 @@
         "string": "cpp",
         "fstream": "cpp",
         "*.tcc": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "ostream": "cpp"
     },
     "editor.formatOnSave": false,
     "C_Cpp.errorSquiggles": "Disabled"
