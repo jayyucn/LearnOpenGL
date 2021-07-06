@@ -32,6 +32,8 @@ vertex storage
 ## Getting started
 ### 纹理 textures
 #### 纹理座标 Texture Cordinate
+Texture coordinates range from 0 to 1 in the x and y axis (remember that we use 2D texture images). Retrieving the texture color using texture coordinates is called sampling.Texture coordinates start at (0,0) for the **lower left corner** of a texture image to (1,1) for the upper right corner of a texture image.![tex_coords](D:\dev\LearnOpenGL\doc\assets\tex_coords.png)
+
 #### 采样 Sampling
 Retrieving the texture color using texture coordinates is calling Sampling.
 #### 纹理环绕 texture wrapping
