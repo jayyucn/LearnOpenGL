@@ -16,6 +16,10 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+unsigned int PROGRAM_ID;
+
+float alphaValue = 0.2;
+
 void getting_started_textures()
 {
     // glfw: initialize and configure
@@ -82,14 +86,14 @@ void getting_started_textures()
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-   // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     // color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
     // texture0 coord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
 #pragma-- begin to Create Texture
@@ -109,7 +113,7 @@ void getting_started_textures()
 
     if (data)
     {
-        std::cout << "texture loaded"<<std::endl;
+        std::cout << "texture loaded" << std::endl;
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
@@ -133,7 +137,7 @@ void getting_started_textures()
 
     if (data)
     {
-        std::cout << "texture loaded"<<std::endl;
+        std::cout << "texture loaded" << std::endl;
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
@@ -147,8 +151,10 @@ void getting_started_textures()
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     // glBindVertexArray(0);
     ourShader.use();
-    glUniform1i(glGetUniformLocation(ourShader.ID,"ourTexture"), 0);
+    PROGRAM_ID = ourShader.ID;
+    glUniform1i(glGetUniformLocation(ourShader.ID, "ourTexture"), 0);
     glUniform1i(glGetUniformLocation(ourShader.ID, "ourTexture2"), 1);
+    glUniform1f(glGetUniformLocation(ourShader.ID, "alpha"), alphaValue);
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -194,6 +200,16 @@ void processInput(GLFWwindow *window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    else if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    {
+        alphaValue < 1 && (alphaValue += 0.01);
+        glUniform1f(glGetUniformLocation(PROGRAM_ID, "alpha"), alphaValue);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    {
+        alphaValue > 0 && (alphaValue -= 0.01);
+        glUniform1f(glGetUniformLocation(PROGRAM_ID, "alpha"), alphaValue);
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
