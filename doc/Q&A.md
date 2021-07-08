@@ -53,3 +53,16 @@ There are several options available, but what the most important are `GL_NEAREST
 
 #纹理单元 Texture Unit
 we can actually assign a location value to the texture sampler so we can set multiple textures at once in a fragment shader. This location of a texture is more commonly known as a texture unit.
+
+### 变换 Transformations
+
+#### 向量相乘 Vector-vector multiplication
+
+##### 点乘 dot product
+
+##### 叉乘 cross product
+
+> Finding the direction of the cross product by the [right-hand rule](https://en.wikipedia.org/wiki/Right-hand_rule).
+
+![220px-Right_hand_rule_cross_product.svg](D:\dev\LearnOpenGL\doc\assets\220px-Right_hand_rule_cross_product.svg.png)
+
