@@ -66,3 +66,10 @@ we can actually assign a location value to the texture sampler so we can set mul
 
 ![220px-Right_hand_rule_cross_product.svg](D:\dev\LearnOpenGL\doc\assets\220px-Right_hand_rule_cross_product.svg.png)
 
+####  行列式
+
+n阶行列式：
+$$\sum(-1)^t.a_{1p_1}.a_{2p_2}.a_{3p_3}$$
+> t为$$p_1 p_2p_3$$的总逆序数
+------
+
