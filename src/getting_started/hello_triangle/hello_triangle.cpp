@@ -13,22 +13,23 @@ const unsigned int SCR_HEIGHT = 600;
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "layout (location = 1) in vec3 aColor;\n"
-"out vec3 color;\n"
+"out vec3 vcolor;\n"
 "void main()\n"
 "{\n"
-"   color = aColor;\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"   vcolor = aColor;\n"
+"   gl_Position = vec4(aPos, 1.0);\n"
 "}\0";
 const char* fragmentShaderSource = "#version 330 core\n"
-"in vec3 color;\n"
+"in vec3 vcolor;\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(color, 1.0f);\n"
+"   FragColor = vec4(vcolor, 1.0f);\n"
 "}\n\0";
 
 int main()
 {
+    
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
@@ -59,7 +60,9 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
-
+      int intMaxVtx;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &intMaxVtx);
+    std::cout<<"xxxxxxxxx The max vertex count = "<<intMaxVtx<<std::endl;
 
     // build and compile our shader program
     // ------------------------------------
@@ -129,7 +132,7 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(vertices), vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(0,3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-    unsigned int color_vbo;
+    unsigned int color_vbo;    
     glGenBuffers(1, &color_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, color_vbo);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(colors), colors, GL_STATIC_DRAW);
