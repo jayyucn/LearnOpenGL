@@ -11,7 +11,7 @@
 				"-std=c++17",
 				"-I./include",
 				"-L./lib",
-				"src/getting_started/shaders/*.cpp",
+				"src/getting_started/textures/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
 				"-o",
