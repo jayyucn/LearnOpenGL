@@ -72,7 +72,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     //构建和编译shader程序
-    Shader lightingShader("resources/shaders/3.1.material.vs", "resources/shaders/3.1.material.fs");
+    Shader lightingShader("resources/shaders/3.1.materials.vs", "resources/shaders/3.1.materials.fs");
     Shader lightCubeShader("resources/shaders/3.1.light_cube.vs", "resources/shaders/3.1.light_cube.fs");
      // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -157,7 +157,6 @@ int main()
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
-
         // input
         // -----
         processInput(window);
@@ -277,12 +276,12 @@ void processInput(GLFWwindow* window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_KEY_ESCAPE)
         glfwSetWindowShouldClose(window, true);
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_KEY_W)
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_KEY_S)
+    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
         camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_KEY_A)
+    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
         camera.ProcessKeyboard(LEFT, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_KEY_D)
+    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 }
