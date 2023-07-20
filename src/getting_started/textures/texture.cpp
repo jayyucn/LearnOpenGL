@@ -9,7 +9,7 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
-void create_texture(unsigned int texture, char const *filename, GLenum fmt);
+unsigned int create_texture(char const *filename, GLenum fmt);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -91,45 +91,46 @@ int main()
     glEnableVertexAttribArray(2);
 
     //create texture
-    unsigned int texture1, texture2;
+    unsigned int texture1 = create_texture("resources/textures/container.jpg", GL_RGB);
+    unsigned int texture2 = create_texture("resources/textures/awesomeface.png", GL_RGBA);
 
-    glGenTextures(1, &texture1);
-    //bind texture
-    glBindTexture(GL_TEXTURE_2D, texture1);
-    // set edge wrapping mode
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    //load image 
-    stbi_set_flip_vertically_on_load(true);//垂直方向翻转图片
-    int width, height, nrChannels;
-    unsigned char* data = stbi_load("resources/textures/container.jpg", &width, &height, &nrChannels,0);
-    if(data){
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE,data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }else{
-        std::cout<<"Failed to load texture1: "<<std::endl;
-    }
-    stbi_image_free(data);
+    // glGenTextures(1, &texture1);
+    // //bind texture
+    // glBindTexture(GL_TEXTURE_2D, texture1);
+    // // set edge wrapping mode
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // //load image 
+    // stbi_set_flip_vertically_on_load(true);//垂直方向翻转图片
+    // int width, height, nrChannels;
+    // unsigned char* data = stbi_load("resources/textures/container.jpg", &width, &height, &nrChannels,0);
+    // if(data){
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE,data);
+    //     glGenerateMipmap(GL_TEXTURE_2D);
+    // }else{
+    //     std::cout<<"Failed to load texture1: "<<std::endl;
+    // }
+    // stbi_image_free(data);
 
-    glGenTextures(1, &texture2);
-    //bind texture
-    glBindTexture(GL_TEXTURE_2D, texture2);
-    // set edge wrapping mode
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    //load image 
-    data = stbi_load("resources/textures/awesomeface.png", &width, &height, &nrChannels,0);
-    if(data){
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }else{
-        std::cout<<"Failed to load texture2: "<<std::endl;
-    }
-    stbi_image_free(data);
+    // glGenTextures(1, &texture2);
+    // //bind texture
+    // glBindTexture(GL_TEXTURE_2D, texture2);
+    // // set edge wrapping mode
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // //load image 
+    // data = stbi_load("resources/textures/awesomeface.png", &width, &height, &nrChannels,0);
+    // if(data){
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,data);
+    //     glGenerateMipmap(GL_TEXTURE_2D);
+    // }else{
+    //     std::cout<<"Failed to load texture2: "<<std::endl;
+    // }
+    // stbi_image_free(data);
     
     // create_texture(texture1, "resources/textures/container.jpg", GL_RGB);
     // create_texture(texture2, "resources/textures/awesomeface.png", GL_RGBA);
@@ -176,11 +177,12 @@ int main()
     return 0;
 }
 
-void create_texture(unsigned int texture, char const *filename, GLenum fmt)
+unsigned int create_texture(char const *filename, GLenum fmt)
 {
-    glGenTextures(1, &texture);
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
     //bind texture
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     // set edge wrapping mode
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -197,6 +199,8 @@ void create_texture(unsigned int texture, char const *filename, GLenum fmt)
         std::cout<<"Failed to load texture: "<<filename<<std::endl;
     }
     stbi_image_free(data);
+
+    return textureID;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
