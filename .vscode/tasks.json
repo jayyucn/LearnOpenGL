@@ -12,7 +12,7 @@
 				"-I./include",
 				"-L./lib",
 				// "src/getting_started/textures/*.cpp",
-				"src/lighting/maps/*.cpp",
+				"src/lighting/casters/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
 				"-o",
