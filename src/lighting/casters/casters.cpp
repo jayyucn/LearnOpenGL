@@ -202,8 +202,7 @@ int main()
         lightingShader.setVec3("light.position", camera.Position);
         lightingShader.setVec3("light.direction", camera.Front);
         float cutoffCos = glm::cos(glm::radians(12.5f));
-        float outerCutoffCos = glm::cos(glm::radians(22.5f));
-        std::cout << cutoffCos << std::endl;
+        float outerCutoffCos = glm::cos(glm::radians(17.5f));
         lightingShader.setFloat("light.cutoff", cutoffCos);
         lightingShader.setFloat("light.outerCutoff", outerCutoffCos);
         lightingShader.setVec3("viewPos", camera.Position);
