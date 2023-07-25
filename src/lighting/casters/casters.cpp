@@ -201,11 +201,16 @@ int main()
         //spot light
         lightingShader.setVec3("light.position", camera.Position);
         lightingShader.setVec3("light.direction", camera.Front);
-        lightingShader.setFloat("light.cutoff", glm::cos(glm::radians(12.5f)));
+        float cutoffCos = glm::cos(glm::radians(12.5f));
+        float outerCutoffCos = glm::cos(glm::radians(22.5f));
+        std::cout << cutoffCos << std::endl;
+        lightingShader.setFloat("light.cutoff", cutoffCos);
+        lightingShader.setFloat("light.outerCutoff", outerCutoffCos);
+        lightingShader.setVec3("viewPos", camera.Position);
 
         // light properties
-        lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
-        lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+        lightingShader.setVec3("light.ambient", 0.1f, 0.1f, 0.1f);
+        lightingShader.setVec3("light.diffuse", 0.8f, 0.8f, 0.8f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
          //light attenuation
         lightingShader.setFloat("light.constant", 1.0f);
@@ -213,7 +218,7 @@ int main()
         lightingShader.setFloat("light.quadratic", 0.032f);
 
         // material properties
-        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
+        // lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
         lightingShader.setFloat("material.shininess", 64.0f);
 
         // view/projection transformations
