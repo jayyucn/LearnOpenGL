@@ -12,12 +12,13 @@
 				"-I./include",
 				"-L./lib",
 				// "src/getting_started/textures/*.cpp",
-				"src/lighting/casters/*.cpp",
+				// "src/lighting/casters/*.cpp",
+				"src/model_loading/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
-				"-assimp",
+				"-lassimp-vc140-mt",
 				"-o",
-				"${workspaceFolder}/opengl.exe"
+				"${workspaceFolder}/opengl.exe",
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
