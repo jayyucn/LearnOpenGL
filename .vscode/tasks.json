@@ -15,6 +15,7 @@
 				"src/lighting/casters/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
+				"-assimp",
 				"-o",
 				"${workspaceFolder}/opengl.exe"
 			],
