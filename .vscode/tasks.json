@@ -16,9 +16,10 @@
 				"src/model_loading/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
-				"-lassimp-vc140-mt",
+				"-lzlibstatic",
+				"-lassimp.dll",
 				"-o",
-				"${workspaceFolder}/opengl.exe",
+				"${workspaceFolder}/opengl.exe"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

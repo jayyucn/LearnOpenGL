@@ -80,8 +80,8 @@ int main()
     Shader ourShader("resources/shaders/1.model_loading.vs", "resources/shaders/1.model_loading.fs");
 
     // load models
-    // -----------
-    Model ourModel("resources/objects/nanosuit/nanosuit.obj");
+    // -----------  resources\objects\nanosuit\nanosuit.obj
+    Model ourModel("resources/objects/backpack/backpack.obj");
     // Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
 
     
