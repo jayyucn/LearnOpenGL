@@ -17,7 +17,7 @@
 				"src/glad.c",
 				"-lglfw3dll",
 				"-lzlibstatic",
-				"-lassimp.dll",
+				"-l'assimp.dll'",
 				"-o",
 				"${workspaceFolder}/opengl.exe"
 			],

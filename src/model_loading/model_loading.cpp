@@ -81,7 +81,7 @@ int main()
 
     // load models
     // -----------  resources\objects\nanosuit\nanosuit.obj
-    Model ourModel("resources/objects/backpack/backpack.obj");
+    Model ourModel("resources/objects/nanosuit/nanosuit.obj");
     // Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
 
     
