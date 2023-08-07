@@ -15,10 +15,11 @@
 				// "src/lighting/casters/*.cpp",
 				// "src/model_loading/*.cpp",
 				"src/advanced_opengl/cubemaps/*.cpp",
+				// "src/advanced_opengl/normal_virturalization/*.cpp",
 				"src/glad.c",
 				"-lglfw3dll",
 				"-lzlibstatic",
-				"-l'assimp.dll'",
+				"-lassimp.dll",
 				"-o",
 				"${workspaceFolder}/opengl.exe"
 			],
