@@ -70,6 +70,12 @@ int main()
         return -1;
     }
 
+    const GLubyte *renderer = glGetString(GL_RENDERER);
+    const GLubyte *version = glGetString(GL_VERSION);
+
+    std::cout << "Renderer: " << renderer << std::endl;
+    std::cout << "OpenGL version supported: " << version << std::endl;
+
     // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
 
     // configure global opengl state
