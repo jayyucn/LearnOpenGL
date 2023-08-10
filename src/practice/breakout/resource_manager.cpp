@@ -33,7 +33,9 @@ Shader ResourceManager::GetShader(std::string name)
 
 Texture2D ResourceManager::LoadTexture(const char *file, bool alpha, std::string name)
 {
-    Textures[name] = loadTextureFromFile(file, alpha);
+    std::string path = "resources/textures/" + std::string(file);
+
+    Textures[name] = loadTextureFromFile(path.c_str(), alpha);
     return Textures[name];
 }
 
