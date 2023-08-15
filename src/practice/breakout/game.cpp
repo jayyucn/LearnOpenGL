@@ -34,10 +34,10 @@ void Game::Init()
     ResourceManager::LoadTexture("block.png", false, "block");
     ResourceManager::LoadTexture("block_solid.png", false, "block_solid");
     ResourceManager::LoadTexture("paddle.png", true, "paddle");
-    GameLevel one; one.Load("resources/levels/one.lvl", this->Width, this->Height / 2);
-    GameLevel two; two.Load("resources/levels/two.lvl", this->Width, this->Height / 2);
-    GameLevel three; three.Load("resources/levels/three.lvl", this->Width, this->Height / 2);
-    GameLevel four; four.Load("resources/levels/four.lvl", this->Width, this->Height / 2);
+    GameLevel one; one.Load("levels/one.lvl", this->Width, this->Height / 2);
+    GameLevel two; two.Load("levels/two.lvl", this->Width, this->Height / 2);
+    GameLevel three; three.Load("levels/three.lvl", this->Width, this->Height / 2);
+    GameLevel four; four.Load("levels/four.lvl", this->Width, this->Height / 2);
     this->Levels.push_back(one);
     this->Levels.push_back(two);
     this->Levels.push_back(three);
@@ -192,11 +192,11 @@ bool CheckCollision(BallObject &ball, GameObject &go)
 Collision CheckCollision2(BallObject &ball, GameObject &go)
 {
     glm::vec2 ballCenter(ball.Position + ball.Radius);
-    glm::vec2 aabbHalf(go.Size.x / 2, go.Size.y / 2);
-    glm::vec2 goCenter(go.Position + aabbHalf);
+    glm::vec2 aabbHalf(go.Size.x / 2.0f, go.Size.y / 2.0f);
+    glm::vec2 goCenter(go.Position.x + aabbHalf.x, go.Position.y + aabbHalf.y);
     glm::vec2 diff = ballCenter - goCenter;
     glm::vec2 clamped = glm::clamp(diff, -aabbHalf, aabbHalf);
-    glm::vec2 closest = aabbHalf + clamped;
+    glm::vec2 closest = goCenter + clamped;
     diff = closest - ballCenter;
     
     if(glm::length(diff) < ball.Radius)

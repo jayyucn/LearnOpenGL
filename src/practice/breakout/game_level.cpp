@@ -6,11 +6,13 @@
 
 void GameLevel::Load(const char *file, unsigned int levelWidth, unsigned int levelHeight)
 {
+    std::string path = "resources/" + std::string(file);
+
     this->Bricks.clear();
     unsigned int tileCode;
     GameLevel level;
     std::string line;
-    std::ifstream fstream(file);
+    std::ifstream fstream(path.c_str());
     std::vector<std::vector<unsigned int>>tileData;
     if(fstream)
     {
