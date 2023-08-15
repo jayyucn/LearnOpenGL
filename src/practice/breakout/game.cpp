@@ -129,8 +129,8 @@ void Game::ResetPlayer()
     Ball->Reset(Player->Position + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -(BALL_RADIUS * 2.0f)), INITIAL_BALL_VELOCITY);
 }
 
-bool CheckCollision(BallObject &ball, GameObject &go);
-Collision CheckCollision2(BallObject &ball, GameObject &go);
+bool CheckCollision(GameObject &ball, GameObject &go);
+Collision CheckCollision(BallObject &ball, GameObject &go);
 Direction VectorDirection(glm::vec2 closest);
 
 void Game::DoCollisions(float dt)
@@ -139,7 +139,7 @@ void Game::DoCollisions(float dt)
     {
         if(!box.Destroyed)
         {
-            Collision collision = CheckCollision2(*Ball, box);
+            Collision collision = CheckCollision(*Ball, box);
             if(std::get<0>(collision))//collision detected
             {
                 if(!box.IsSolid)
@@ -168,7 +168,7 @@ void Game::DoCollisions(float dt)
             }
         }
     }
-    Collision result = CheckCollision2(*Ball, *Player);
+    Collision result = CheckCollision(*Ball, *Player);
     if(!Ball->Stuck && std::get<0>(result))
     {
         float playerCenterX = Player->Position.x + Player->Size.x / 2.0f;
@@ -182,14 +182,14 @@ void Game::DoCollisions(float dt)
     }
 }
 
-bool CheckCollision(BallObject &ball, GameObject &go)
+bool CheckCollision(GameObject &one, GameObject &go)
 {
-    bool collisionX = ball.Position.x + ball.Size.x >= go.Position.x && go.Position.x + go.Size.x >= ball.Position.x;
-    bool collisionY = ball.Position.y + ball.Size.y >= go.Position.y && go.Position.y + go.Size.y >= ball.Position.y;
+    bool collisionX = one.Position.x + one.Size.x >= go.Position.x && go.Position.x + go.Size.x >= one.Position.x;
+    bool collisionY = one.Position.y + one.Size.y >= go.Position.y && go.Position.y + go.Size.y >= one.Position.y;
     return collisionX && collisionY;
 }
 
-Collision CheckCollision2(BallObject &ball, GameObject &go)
+Collision CheckCollision(BallObject &ball, GameObject &go)
 {
     glm::vec2 ballCenter(ball.Position + ball.Radius);
     glm::vec2 aabbHalf(go.Size.x / 2.0f, go.Size.y / 2.0f);
